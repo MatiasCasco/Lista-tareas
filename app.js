@@ -1,5 +1,5 @@
 require('colors');
-
+const argv = require('yargs').argv
 const { mostrarMenu, pausa } = require('./helpers/mensajes');
 
 console.clear();
@@ -15,7 +15,7 @@ const main = async() => {
         if ( opt !== '0') await pausa();
     }while(opt !== '0');
     
-    //pausa();
+    
 }
 
 main();
