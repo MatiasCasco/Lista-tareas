@@ -15,7 +15,7 @@ const leerDB = () => {
     const data = JSON.parse(info);
     console.log(data);
 
-    return null;
+    return data;
 }
 
 module.exports = {
