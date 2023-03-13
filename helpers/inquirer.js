@@ -5,6 +5,7 @@ const inquirer = import('inquirer');*/
 import 'colors';
 import inquirer from 'inquirer';
 
+
 const preguntas = [
     {
         type: 'list',
@@ -138,10 +139,39 @@ const confirmar = async(message) => {
     return ok;
 }
 
+const mostrarListadoCheckList = async(tareas = []) => {
+    const choices = tareas.map( (tarea, i) => {
+        
+        const idx = `${i + 1}.`.green;
+        
+        return {
+            value: tarea.id,
+            name: `${idx} ${tarea.desc}`,
+            checked: (tarea.completadoEn) ? true : false
+        }
+
+    });
+
+    const pregunta = [
+        {
+            //El checkbox va a regresar un arreglo con todos los id seleccionados
+            type: 'checkbox',
+            name: 'ids', 
+            message: 'Selecciones',
+            choices
+        }
+    ]
+
+    const {ids} = await inquirer.prompt(pregunta);
+
+    return ids;
+}
+
 export {
     inquirerMenu,
     pausa, 
     leerInput,
     listadoTareasBorrar,
-    confirmar
+    confirmar,
+    mostrarListadoCheckList
 }
